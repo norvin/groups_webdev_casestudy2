@@ -6,11 +6,11 @@ header("Access-Control-Allow-Methods: GET");
 
 include_once '../private/config.php';
 include_once '../private/database.php';
-include_once '../class/personprofile.php';
+include_once '../class/healthdeclarationprofile.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$item = new PersonProfile($db);
+$item = new HealthDeclarationProfile($db);
 
 $result = $item->getdashboarddata();
 

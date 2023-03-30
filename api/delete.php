@@ -5,13 +5,13 @@ header("Access-Control-Allow-Methods: POST");
 
 include_once '../private/config.php';
 include_once '../private/database.php';
-include_once '../class/personprofile.php';
+include_once '../class/healthdeclarationprofile.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$item = new PersonProfile($db);
+$item = new HealthDeclarationProfile($db);
 
-$item->profileid = $_POST['id'];
+$item->hd_id = $_POST['id'];
 
 if($item->delete()){
     http_response_code(201);

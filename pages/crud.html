@@ -22,7 +22,7 @@
           type="button"
           id="addrow"
           data-toggle="modal"
-          data-target="#modelId"
+          data-target="#entrymodal"
           class="btn btn-primary"
           onclick="clearform()"
         >
@@ -38,7 +38,8 @@
           <th scope="col">Middle Initial</th>
           <th scope="col">Last Name</th>
           <th scope="col">Age</th>
-          <th scope="col">Contact Number</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Mobile Number</th>
           <th scope="col">Temperature</th>
           <th scope="col">Diagnosed</th>
           <th scope="col">Encounter</th>
@@ -51,7 +52,7 @@
     </table>
     <div
       class="modal fade"
-      id="modelId"
+      id="entrymodal"
       tabindex="-1"
       role="dialog"
       aria-labelledby="modelTitleId"
@@ -405,7 +406,7 @@
             });
             clearform();
             table.ajax.reload();
-            $("#modelId").modal("hide");
+            $("#entrymodal").modal("hide");
           },
           error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
@@ -434,7 +435,7 @@
             });
             clearform();
             table.ajax.reload();
-            $("#modelId").modal("hide");
+            $("#entrymodal").modal("hide");
 
           },
           error: function (jqXHR, textStatus, errorThrown) {
@@ -461,7 +462,7 @@
         data: { id: profileid },
         success: function (result, textStatus, jqXHR) {
           console.log(textStatus + ": " + jqXHR.status);
-          $("#modelId").modal("show");
+          $("#entrymodal").modal("show");
           $("#profileid").val(result.data[0].profileid);
           $("#firstname").val(result.data[0].firstname);
           $("#lastname").val(result.data[0].lastname);
@@ -493,12 +494,18 @@
       type: "POST",
     },
     columns: [
-      { data: "profileid" },
-      { data: "firstname" },
-      { data: "lastname" },
-      { data: "middlename" },
+      { data: "hd_id" },
+      { data: "fname" },
+      { data: "mi" },
+      { data: "lname" },
+      { data: "age" },
       { data: "gender" },
-      { data: "address" },
+      { data: "mobile" },
+      { data: "temp" },
+      { data: "diagnosed" },
+      { data: "encounter" },
+      { data: "vaxxed" },
+      { data: "nationality" },
       {
         data: null,
         defaultContent: `<td>

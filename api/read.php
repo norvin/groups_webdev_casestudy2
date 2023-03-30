@@ -5,11 +5,11 @@ header("Access-Control-Allow-Methods: POST,GET");
 
 include_once '../private/config.php';
 include_once '../private/database.php';
-include_once '../class/personprofile.php';
+include_once '../class/healthdeclarationprofile.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$items = new PersonProfile($db);
+$items = new HealthDeclarationProfile($db);
 
 $result = null;
 if (isset($_GET['id'])) {
@@ -38,6 +38,7 @@ if ($result->num_rows > 0) {
 
     header('content-type: application/json; charset=utf-8');
     echo json_encode($json);
+    //console.log($json);
 } else {
     http_response_code(404);
     echo json_encode(

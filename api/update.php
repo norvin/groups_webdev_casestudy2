@@ -7,18 +7,24 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include_once '../private/config.php';
 include_once '../private/database.php';
-include_once '../class/personprofile.php';
+include_once '../class/healthdeclarationprofile.php';
 
 $database = new Database();
 $db = $database->getConnection();
-$item = new PersonProfile($db);
+$item = new HealthDeclarationProfile($db);
 
-$item->profileid = $_POST['profileid'];
-$item->firstname = $_POST['firstname'];
-$item->lastname = $_POST['lastname'];
-$item->middlename = $_POST['middlename'];
+$item->hd_id = $_POST['hdid'];
+$item->fname = $_POST['firstname'];
+$item->mi = $_POST['middleinitial'];
+$item->lname = $_POST['lastname'];
+$item->age = $_POST['age'];
 $item->gender = $_POST['gender'];
-$item->address = $_POST['address'];
+$item->mobile = $_POST['mobilenumber'];
+$item->temp = $_POST['temperature'];
+$item->diagnosed = $_POST['diagnosed'];
+$item->encounter = $_POST['encounter'];
+$item->vaxxed = $_POST['vaxxed'];
+$item->nationality = $_POST['nationality'];
 
 if($item->update()){
     http_response_code(201);
