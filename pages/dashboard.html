@@ -18,14 +18,98 @@
   <div class="row">
     <div class="col-lg-4 col-6">
       <!-- small box -->
+      <div class="small-box bg-primary">
+        <div class="inner">
+          <h3 id="totalencounter"></h3>
+
+          <p>COVID-19 ENCOUNTER</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-ios-plus"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3 id="totalvaxxed"></h3>
+
+          <p>VACCINATED</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-ios-heart"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-6">
+      <!-- small box -->
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3 id="totalfever"></h3>
+
+          <p>FEVER</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-ios-medkit"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-6">
+      <!-- small box -->
       <div class="small-box bg-success">
+        <div class="inner">
+          <h3 id="totaladult"></h3>
+
+          <p>ADULT</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-person"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-6">
+      <!-- small box -->
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h3 id="totalminor"></h3>
+
+          <p>MINOR</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-person"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-6">
+      <!-- small box -->
+      <div class="small-box bg-secondary">
+        <div class="inner">
+          <h3 id="totalforeigner"></h3>
+
+          <p>FOREIGNER</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-android-person"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-6">
+      <!-- small box -->
+      <div class="small-box bg-primary">
         <div class="inner">
           <h3 id="totalrecords"></h3>
 
-          <p>Total Records</p>
+          <p>TOTAL RECORDS</p>
         </div>
         <div class="icon">
-          <i class="ion ion-person"></i>
+          <i class="ion ion-ios-people"></i>
         </div>
       </div>
     </div>
@@ -35,10 +119,10 @@
         <div class="inner">
           <h3 id="totalmale"></h3>
 
-          <p>Total Male</p>
+          <p>TOTAL MALE</p>
         </div>
         <div class="icon">
-          <i class="ion ion-person"></i>
+          <i class="ion ion-man"></i>
         </div>
       </div>
     </div>
@@ -48,15 +132,40 @@
         <div class="inner">
           <h3 id="totalfemale"></h3>
 
-          <p>Total Female</p>
+          <p>TOTAL FEMALE</p>
         </div>
         <div class="icon">
-          <i class="ion ion-person"></i>
+          <i class="ion ion-woman"></i>
         </div>
       </div>
     </div>
     <!-- ./col -->
   </div>
+
+  <div class="row">
+    <!-- BAR CHART -->
+    <div class="card card-success">
+      <div class="card-header">
+        <h3 class="card-title">Bar Chart</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart">
+          <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+
 </section>
 
 <script>
@@ -66,7 +175,13 @@
       url: window.location.pathname + "api/dashboarddata.php",
       success: function (result, textStatus, jqXHR) {
         console.log(textStatus + ": " + jqXHR.status);
-
+        
+        $("#totalencounter").text(result.data[0].totalencounter);
+        $("#totalvaxxed").text(result.data[0].totalvaxxed);
+        $("#totalfever").text(result.data[0].totalfever);
+        $("#totaladult").text(result.data[0].totaladult);
+        $("#totalminor").text(result.data[0].totalminor);
+        $("#totalforeigner").text(result.data[0].totalforeigner);
         $("#totalrecords").text(result.data[0].totalrecords);
         $("#totalmale").text(result.data[0].totalmale);
         $("#totalfemale").text(result.data[0].totalfemale);
@@ -76,4 +191,35 @@
       },
     });
   });
+</script>
+
+<script>
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+  })
 </script>

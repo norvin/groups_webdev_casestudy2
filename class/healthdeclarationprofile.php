@@ -124,19 +124,19 @@ class HealthDeclarationProfile{
     }
 
     public function getdashboarddata() {
-        // mysqli_next_result($this->conn);;
-        // $sql = "SELECT * FROM v_dashboarddata";
-
-        // $result = mysqli_query($this->conn, $sql);
-        // mysqli_close($this->conn);
-        // return $result;
-
         mysqli_next_result($this->conn);;
-        $sql = "SELECT COUNT(*) AS numofentries FROM " . $this->table_name;
+        $sql = "SELECT * FROM v_dashboarddata";
 
         $result = mysqli_query($this->conn, $sql);
         mysqli_close($this->conn);
         return $result;
+
+        // mysqli_next_result($this->conn);;
+        // $sql = "SELECT COUNT(*) AS numofentries FROM " . $this->table_name;
+
+        // $result = mysqli_query($this->conn, $sql);
+        // mysqli_close($this->conn);
+        // return $result;
     }
 
 

@@ -118,6 +118,46 @@
                   <p>Declaration Form</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a id="documentation" href="files/2023-03-31-WebDev_Group-S-UserManual.pdf" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>Documentation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>About Group S
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: block;">
+                  <li class="nav-item">
+                    <a href="https://norvin.github.io/" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Angeles, NDM</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://nkmiplaal.github.io/nouvell.io/" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Lagapa, NKA</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://bethhaha.github.io/" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Patagnan, MBE</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Sivila, CM</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </nav>
           <!-- /.sidebar-menu -->
