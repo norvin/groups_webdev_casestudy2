@@ -85,7 +85,7 @@ class HealthDeclarationProfile{
 
     public function update(){
         $this->timestamp = time();
-        $statement = $this->conn->prepare("UPDATE " . $this->table_name . " SET fname = ?, mi = ?, lname = ?, age = ?, gender = ?, mobile = ?, temp = ?, diagnosed = ?, encounter = ?, vaxxed = ?, nationality = ?, timestamp = ? WHERE hdid = " . $this->hd_id . "");
+        $statement = $this->conn->prepare("UPDATE " . $this->table_name . " SET fname = ?, mi = ?, lname = ?, age = ?, gender = ?, mobile = ?, temp = ?, diagnosed = ?, encounter = ?, vaxxed = ?, nationality = ?, timestamp = ? WHERE hd_id = " . $this->hd_id . "");
         $statement->bind_param("ssssssssssss",$this->fname,$this->mi,$this->lname,$this->age,$this->gender,$this->mobile,$this->temp,$this->diagnosed,$this->encounter,$this->vaxxed,$this->nationality,$this->timestamp);
         
         //sanitize
